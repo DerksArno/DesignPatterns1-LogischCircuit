@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesignPatterns1_LogischCircuit.Models
+namespace DesignPatterns1_LogischCircuit.Models.Nodes
 {
     public abstract class Node
     {
@@ -28,5 +30,8 @@ namespace DesignPatterns1_LogischCircuit.Models
         {
             throw new NotImplementedException();
         }
+
+        // Used for registering node objects
+        public abstract string GetTypeName();
     }
 }

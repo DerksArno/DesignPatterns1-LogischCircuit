@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using DesignPatterns1_LogischCircuit.Factory;
+using DesignPatterns1_LogischCircuit.Models.Nodes;
+using DesignPatterns1_LogischCircuit.Models;
+using System.Text.RegularExpressions;
 
 namespace DesignPatterns1_LogischCircuit.Models
 {
@@ -28,24 +31,48 @@ namespace DesignPatterns1_LogischCircuit.Models
 
                 if (!_setOutputs)
                 {
-                    createNode(c);
+                    CreateNode(c);
                 }
                 else
                 {
-                    setOutput(c);
+                    SetOutput(c);
                 }
-                Debug.WriteLine(c);
             }
         }
 
-        private void createNode(String nodeText)
+        private void CreateNode(String nodeText)
         {
-            Debug.WriteLine(_nodeFactory.CreateNode(nodeText));
+            String nodeName = TrimText(nodeText, ':');
+            String nodeType = FindType(nodeText);
+            Node c = _nodeFactory.CreateNode(nodeType, nodeName);
         }
 
-        private void setOutput(String outputText)
+        private void SetOutput(String outputText)
+        {
+            //Debug.WriteLine("output" + _nodeFactory.CreateNode(outputText));
+        }
+
+        private String TrimText(String text, Char TrimAtChar)
+        {
+            int index = text.IndexOf(TrimAtChar);
+            if (index > 0)
+            {
+                return text.Substring(0, index);
+            }
+            return "";
+        }
+
+        private String FindType(String text)
+        {
+            string pattern = @"[\w\d]+:[\s]+([\w]+);";
+            MatchCollection matches = Regex.Matches(text, pattern);
+            return matches[0].Groups[1].Value;
+        }
+
+        public void StartSimulation()
         {
 
         }
+        
     }
 }

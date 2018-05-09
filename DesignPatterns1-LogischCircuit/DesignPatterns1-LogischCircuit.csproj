@@ -77,9 +77,18 @@
     </ApplicationDefinition>
     <Compile Include="Builder\CircuitBuilder.cs" />
     <Compile Include="Factory\NodeFactory.cs" />
+    <Compile Include="Models\Nodes\AndNode.cs" />
     <Compile Include="Models\Circuit.cs" />
-    <Compile Include="Models\Node.cs" />
-    <Compile Include="Models\OrNode.cs" />
+    <Compile Include="Models\Nodes\NandNode.cs" />
+    <Compile Include="Models\Nodes\Node.cs" />
+    <Compile Include="Models\Nodes\NorNode.cs" />
+    <Compile Include="Models\Nodes\NotNode.cs" />
+    <Compile Include="Models\Nodes\OrNode.cs" />
+    <Compile Include="Models\Nodes\ProbeNode.cs" />
+    <Compile Include="Models\Nodes\Source\HighSource.cs" />
+    <Compile Include="Models\Nodes\Source\LowSource.cs" />
+    <Compile Include="Models\Nodes\Source\Source.cs" />
+    <Compile Include="Models\Nodes\XorNode.cs" />
     <Compile Include="Utility\FileReader.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
