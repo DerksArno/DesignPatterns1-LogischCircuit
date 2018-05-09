@@ -14,7 +14,6 @@ namespace DesignPatterns1_LogischCircuit.Models
     public class Circuit
     {
         private Boolean _setOutputs = false;
-        private NodeFactory _nodeFactory = new NodeFactory();
 
         public Circuit(String[] file)
         {
@@ -44,7 +43,7 @@ namespace DesignPatterns1_LogischCircuit.Models
         {
             String nodeName = TrimText(nodeText, ':');
             String nodeType = FindType(nodeText);
-            Node c = _nodeFactory.CreateNode(nodeType, nodeName);
+            Node c = NodeFactory.CreateNode(nodeType, nodeName);
         }
 
         private void SetOutput(String outputText)

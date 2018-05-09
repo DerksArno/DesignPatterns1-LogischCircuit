@@ -9,9 +9,9 @@ using DesignPatterns1_LogischCircuit.Models.Nodes;
 
 namespace DesignPatterns1_LogischCircuit.Factory
 {
-    public class NodeFactory
+    public static class NodeFactory
     {
-        private Dictionary<string, Type> _types = CreateTypeMap();
+        private static Dictionary<string, Type> _types = CreateTypeMap();
 
         private static Dictionary<string, Type> CreateTypeMap()
         {
@@ -43,7 +43,7 @@ namespace DesignPatterns1_LogischCircuit.Factory
             return typeMap;
         }
 
-        public Node CreateNode(string type, string name)
+        public static Node CreateNode(string type, string name)
         {
             Type t = _types[type];
             Node node = (Node)Activator.CreateInstance(t);
