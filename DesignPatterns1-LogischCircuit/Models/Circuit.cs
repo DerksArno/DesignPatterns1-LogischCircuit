@@ -8,12 +8,15 @@ using DesignPatterns1_LogischCircuit.Factory;
 using DesignPatterns1_LogischCircuit.Models.Nodes;
 using DesignPatterns1_LogischCircuit.Models;
 using System.Text.RegularExpressions;
+using DesignPatterns1_LogischCircuit.Models.Nodes.Source;
 
 namespace DesignPatterns1_LogischCircuit.Models
 {
     public class Circuit
     {
         private Boolean _setOutputs = false;
+        private List<Node> _nodes = new List<Node>();
+        private List<Source> _sourceNodes = new List<Source>();
 
         public Circuit(String[] file)
         {
@@ -26,6 +29,7 @@ namespace DesignPatterns1_LogischCircuit.Models
                 if (c.Length == 0)
                 {
                     _setOutputs = true;
+                    continue;
                 }
 
                 if (!_setOutputs)
@@ -34,9 +38,16 @@ namespace DesignPatterns1_LogischCircuit.Models
                 }
                 else
                 {
-                    SetOutput(c);
+                    Node node = SetOutput(c);
                 }
             }
+
+            foreach (Node node in _nodes)
+            {
+                SetInput(node);
+            }
+
+            StartSimulation();
         }
 
         private void CreateNode(String nodeText)
@@ -44,11 +55,41 @@ namespace DesignPatterns1_LogischCircuit.Models
             String nodeName = TrimText(nodeText, ':');
             String nodeType = FindType(nodeText);
             Node c = NodeFactory.CreateNode(nodeType, nodeName);
+            _nodes.Add(c);
+
+            // TODO Implement better way to get the Source nodes?
+            if (nodeType == "INPUT_HIGH" || nodeType == "INPUT_LOW")
+            {
+                _sourceNodes.Add((Source)c);
+                //Debug.WriteLine(c._name);
+            }
         }
 
-        private void SetOutput(String outputText)
+        private Node SetOutput(String outputText)
         {
-            //Debug.WriteLine("output" + _nodeFactory.CreateNode(outputText));
+            String nodeName = TrimText(outputText, ':');
+            String[] outputNames = FindTypes(outputText);
+            Node node = _nodes.Find(k => k._name == nodeName);
+            if (node != null)
+            {
+                foreach (String name in outputNames)
+                {
+                    node._nextNodes.Add(_nodes.Find(k => k._name == name));
+                }
+            }
+            return node;
+        }
+
+        private void SetInput(Node selectedNode)
+        {
+            foreach (Node node in _nodes)
+            {
+                if (node._nextNodes.Contains(selectedNode))
+                {
+                    selectedNode.Subscribe(node);
+                    selectedNode._previousNodes.Add(node);
+                }
+            }
         }
 
         private String TrimText(String text, Char TrimAtChar)
@@ -63,14 +104,24 @@ namespace DesignPatterns1_LogischCircuit.Models
 
         private String FindType(String text)
         {
-            string pattern = @"[\w\d]+:[\s]+([\w]+);";
+            string pattern = @"[\w\d]+:[\s]+([\w,]+);";
             MatchCollection matches = Regex.Matches(text, pattern);
             return matches[0].Groups[1].Value;
         }
 
+        private String[] FindTypes(String text)
+        {
+            String[] types = FindType(text).Split(',');
+            return types;
+        }
+
         public void StartSimulation()
         {
-
+            foreach (Source sourceNode in _sourceNodes)
+            {
+                //sourceNode.Start();
+            }
+            String c = "";
         }
         
     }

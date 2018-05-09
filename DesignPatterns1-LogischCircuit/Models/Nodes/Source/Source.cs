@@ -8,9 +8,16 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes.Source
 {
     public abstract class Source : Node
     {
+        private bool _defaultOutput;
+        
         public void Start()
         {
-            throw new NotImplementedException();
+            CalculateOutput();
+        }
+
+        public void SwitchOutput()
+        {
+            _defaultOutput = !_defaultOutput;
         }
     }
 }

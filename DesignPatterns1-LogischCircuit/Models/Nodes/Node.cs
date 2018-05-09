@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DesignPatterns1_LogischCircuit.Observable;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -8,30 +10,54 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns1_LogischCircuit.Models.Nodes
 {
-    public abstract class Node
+    public abstract class Node : Observable<Node>, IObserver<Node>
     {
         public String _name;
-        public Boolean _output;
-        private Dictionary<Node, bool> _inputs;
-        private List<Node> _previousNodes;
-        private List<Node> _nextNodes;
+        protected Dictionary<Node, bool> _inputs = new Dictionary<Node, bool>();
+        public ObservableCollection<Node> _previousNodes = new ObservableCollection<Node>();
+        public List<Node> _nextNodes = new List<Node>();
 
-        public void PreviousNodeValue()
-        {
-            throw new NotImplementedException();
+        public bool _output {
+            get { return _output; }
+            set
+            {
+                _output = value;
+                Notify(this);
+            }
         }
 
-        public void CalculateOutput()
+        public void PreviousNodeValue(Node node, Boolean value)
         {
-            throw new NotImplementedException();
+            AddToInput(node, value);
+            if (_inputs.Count == _previousNodes.Count)
+            {
+                CalculateOutput();
+            }
         }
 
-        public void AddToInput()
+        public abstract void CalculateOutput();
+
+        private void AddToInput(Node node, Boolean value)
         {
-            throw new NotImplementedException();
+            _inputs.Add(node, value);
         }
 
         // Used for registering node objects
         public abstract string GetTypeName();
+        
+        public void OnNext(Node value)
+        {
+            _nextNodes.ForEach(node => node.PreviousNodeValue(this, _output));
+        }
+
+        public void OnError(Exception error)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnCompleted()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,7 +6,26 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns1_LogischCircuit.Models.Nodes
 {
-    class XorNode
+    class XorNode : Node
     {
+        public override void CalculateOutput()
+        {
+            // TODO aanpassen
+            bool output = true;
+            foreach (KeyValuePair<Node, bool> entry in _inputs)
+            {
+                if (entry.Value == false)
+                {
+                    output = false;
+                    break;
+                }
+            }
+            _output = output;
+        }
+
+        public override string GetTypeName()
+        {
+            return "XOR";
+        }
     }
 }

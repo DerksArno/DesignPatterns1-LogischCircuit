@@ -89,6 +89,7 @@
     <Compile Include="Models\Nodes\Source\LowSource.cs" />
     <Compile Include="Models\Nodes\Source\Source.cs" />
     <Compile Include="Models\Nodes\XorNode.cs" />
+    <Compile Include="Observable\Observable.cs" />
     <Compile Include="Utility\FileReader.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
