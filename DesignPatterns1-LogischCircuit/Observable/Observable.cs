@@ -38,7 +38,6 @@ namespace DesignPatterns1_LogischCircuit.Observable
 
         protected void Notify(T Subject)
         {
-            Console.WriteLine(_observers);
             // TODO: Hier moeten we iedere observer die ons in de gaten houdt een seintje geven dat we een nieuwe waarde hebben. We roepen dus hun OnNext methode aan.
             foreach (var o in _observers)
                 o.OnNext(Subject);

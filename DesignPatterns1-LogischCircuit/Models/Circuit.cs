@@ -119,7 +119,7 @@ namespace DesignPatterns1_LogischCircuit.Models
         {
             foreach (Source sourceNode in _sourceNodes)
             {
-                //sourceNode.Start();
+                sourceNode.Start();
             }
             String c = "";
         }

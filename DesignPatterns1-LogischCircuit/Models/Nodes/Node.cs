@@ -13,15 +13,16 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
     public abstract class Node : Observable<Node>, IObserver<Node>
     {
         public String _name;
+        protected bool _outputValue = false;
         protected Dictionary<Node, bool> _inputs = new Dictionary<Node, bool>();
         public ObservableCollection<Node> _previousNodes = new ObservableCollection<Node>();
         public List<Node> _nextNodes = new List<Node>();
 
         public bool _output {
-            get { return _output; }
+            get { return _outputValue; }
             set
             {
-                _output = value;
+                _outputValue = value;
                 Notify(this);
             }
         }
