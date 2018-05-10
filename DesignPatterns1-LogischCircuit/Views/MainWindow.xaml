@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:DesignPatterns1_LogischCircuit"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
-        DataContext="{Binding Main, Source={StaticResource Locator}}">
+        DataContext="{Binding Path=Main, Source={StaticResource Locator}}">
     <Grid HorizontalAlignment="Left" Height="320" Margin="0,0,0,0" VerticalAlignment="Top" Width="515">
         <StackPanel HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="139">
             <Label x:Name="selectCircuitLabel" Content="Select Circuit"/>
-            <ComboBox x:Name="comboBox"/>
+            <ComboBox x:Name="comboBox" ItemsSource="{Binding Circuits, Mode=TwoWay}"
+                      SelectedItem="{Binding SelectedCircuit}" SelectedIndex="0"/>
             <Label x:Name="simulationLabel" Content="Simulation" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
             <Button x:Name="button" Content="Start Simulation"/>
             <Label x:Name="settingsLabel" Content="Settings" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>

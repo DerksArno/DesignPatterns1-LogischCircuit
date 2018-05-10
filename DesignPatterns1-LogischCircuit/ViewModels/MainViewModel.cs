@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Windows.Controls;
 using DesignPatterns1_LogischCircuit.Builder;
 using DesignPatterns1_LogischCircuit.Models;
+using System.Collections.ObjectModel;
 
 namespace DesignPatterns1_LogischCircuit.ViewModels
 {
@@ -21,9 +22,12 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
     public class MainViewModel : ViewModelBase
     {
         Circuit _circuit;
+        public ObservableCollection<string> Circuits { get; set; }
+        public string SelectedCircuit;
 
         public MainViewModel()
         {
+            Circuits = new ObservableCollection<string>() { "test" };
             // TODO selectCircuit en startSimulation werkend maken
             SelectCircuit();
             StartSimulation();
