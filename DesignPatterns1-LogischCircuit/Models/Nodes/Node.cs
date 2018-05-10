@@ -40,7 +40,14 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
 
         private void AddToInput(Node node, Boolean value)
         {
-            _inputs.Add(node, value);
+            if (_inputs.ContainsKey(node))
+            {
+                _inputs[node] = value;
+            }
+            else
+            {
+                _inputs.Add(node, value);
+            }
         }
 
         // Used for registering node objects
@@ -48,7 +55,7 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
         
         public void OnNext(Node value)
         {
-            _nextNodes.ForEach(node => node.PreviousNodeValue(this, _output));
+            PreviousNodeValue(value, value._output);
         }
 
         public void OnError(Exception error)

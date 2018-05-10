@@ -86,7 +86,7 @@ namespace DesignPatterns1_LogischCircuit.Models
             {
                 if (node._nextNodes.Contains(selectedNode))
                 {
-                    selectedNode.Subscribe(node);
+                    node.Subscribe(selectedNode);
                     selectedNode._previousNodes.Add(node);
                 }
             }
