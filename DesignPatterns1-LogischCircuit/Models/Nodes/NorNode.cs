@@ -10,17 +10,16 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
     {
         public override void CalculateOutput()
         {
-            // TODO aanpassen
-            bool output = true;
+            bool output = false;
             foreach (KeyValuePair<Node, bool> entry in _inputs)
             {
-                if (entry.Value == false)
+                if (entry.Value == true)
                 {
-                    output = false;
+                    output = true;
                     break;
                 }
             }
-            _output = output;
+            _output = !output;
         }
 
         public override string GetTypeName()

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns1_LogischCircuit.Builder
 {
-    class CircuitBuilder
+    public static class CircuitBuilder
     {
-        public Circuit CreateCircuit(int fileId)
+        public static Circuit CreateCircuit(int fileId)
         {
             return new Circuit(Utility.FileReader.ReadFile(fileId));
         }

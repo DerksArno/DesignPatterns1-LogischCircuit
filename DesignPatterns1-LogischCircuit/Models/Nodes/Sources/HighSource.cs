@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesignPatterns1_LogischCircuit.Models.Nodes.Source
+namespace DesignPatterns1_LogischCircuit.Models.Nodes.Sources
 {
     class HighSource : Source
     {

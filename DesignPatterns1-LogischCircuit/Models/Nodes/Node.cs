@@ -27,9 +27,9 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
             }
         }
 
-        public void PreviousNodeValue(Node node, Boolean value)
+        public void PreviousNodeValue(Node node)
         {
-            AddToInput(node, value);
+            AddToInput(node, node._output);
             if (_inputs.Count == _previousNodes.Count)
             {
                 CalculateOutput();
@@ -55,7 +55,7 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
         
         public void OnNext(Node value)
         {
-            PreviousNodeValue(value, value._output);
+            PreviousNodeValue(value);
         }
 
         public void OnError(Exception error)

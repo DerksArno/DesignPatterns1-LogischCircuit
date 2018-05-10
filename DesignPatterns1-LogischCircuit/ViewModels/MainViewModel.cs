@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using DesignPatterns1_LogischCircuit.Builder;
 using DesignPatterns1_LogischCircuit.Models;
 
-namespace DesignPatterns1_LogischCircuit.ViewModel
+namespace DesignPatterns1_LogischCircuit.ViewModels
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.
@@ -20,13 +20,23 @@ namespace DesignPatterns1_LogischCircuit.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
+        Circuit _circuit;
+
         public MainViewModel()
         {
-            CircuitBuilder c = new CircuitBuilder();
-            Circuit circuit = c.CreateCircuit(1);
+            // TODO selectCircuit en startSimulation werkend maken
+            SelectCircuit();
+            StartSimulation();
+        }
+
+        private void SelectCircuit()
+        {
+            _circuit = CircuitBuilder.CreateCircuit(1);
+        }
+
+        private void StartSimulation()
+        {
+            _circuit.StartSimulation();
         }
     }
 }

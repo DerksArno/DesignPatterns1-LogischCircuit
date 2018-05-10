@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DesignPatterns1_LogischCircuit
+namespace DesignPatterns1_LogischCircuit.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

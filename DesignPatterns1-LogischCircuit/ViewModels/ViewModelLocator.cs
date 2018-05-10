@@ -16,7 +16,7 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
-namespace DesignPatterns1_LogischCircuit.ViewModel
+namespace DesignPatterns1_LogischCircuit.ViewModels
 {
     /// <summary>
     /// This class contains static references to all the view models in the

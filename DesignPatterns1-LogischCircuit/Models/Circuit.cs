@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using DesignPatterns1_LogischCircuit.Factory;
-using DesignPatterns1_LogischCircuit.Models.Nodes;
-using DesignPatterns1_LogischCircuit.Models;
 using System.Text.RegularExpressions;
-using DesignPatterns1_LogischCircuit.Models.Nodes.Source;
+using DesignPatterns1_LogischCircuit.Models.Nodes;
+using DesignPatterns1_LogischCircuit.Models.Nodes.Sources;
 
 namespace DesignPatterns1_LogischCircuit.Models
 {
@@ -46,8 +45,6 @@ namespace DesignPatterns1_LogischCircuit.Models
             {
                 SetInput(node);
             }
-
-            StartSimulation();
         }
 
         private void CreateNode(String nodeText)
@@ -121,7 +118,6 @@ namespace DesignPatterns1_LogischCircuit.Models
             {
                 sourceNode.Start();
             }
-            String c = "";
         }
         
     }
