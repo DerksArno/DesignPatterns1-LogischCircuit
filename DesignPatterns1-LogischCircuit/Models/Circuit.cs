@@ -14,29 +14,15 @@ namespace DesignPatterns1_LogischCircuit.Models
     public class Circuit
     {
         
-        private List<Node> _nodes = new List<Node>();
-        private List<Source> _sourceNodes = new List<Source>();
+        private List<Node> _nodes;
+        private List<Source> _sourceNodes;
 
-        public Circuit(String[] file)
+        public Circuit(List<Node> nodes, List<Source> sources)
         {
-            
+            _nodes = nodes;
+            _sourceNodes = sources;
         }
-
         
-
-        
-
-        private void SetInput(Node selectedNode)
-        {
-            foreach (Node node in _nodes)
-            {
-                if (node._nextNodes.Contains(selectedNode))
-                {
-                    node.Subscribe(selectedNode);
-                    selectedNode._previousNodes.Add(node);
-                }
-            }
-        }
         
         public void StartSimulation()
         {

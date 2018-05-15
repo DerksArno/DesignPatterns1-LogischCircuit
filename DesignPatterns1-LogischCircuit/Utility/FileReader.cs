@@ -12,13 +12,13 @@ namespace DesignPatterns1_LogischCircuit.Utility
     {
         private static readonly String folderName = "circuits";
         private static Boolean _setOutputs = false;
-        private static Dictionary<string, string[]> nodes = new Dictionary<string, string>();
+        private static Dictionary<string, string[]> nodes = new Dictionary<string, string[]>();
         private static Dictionary<string, string[]> outputs = new Dictionary<string, string[]>();
 
 
-        public static Dictionary<string, string>[] ReadFile(int level)
+        public static Dictionary<string, string[]>[] ReadFile(string levelName)
         {
-            String downloads = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents") + @"\" + folderName + "\\Circuit" + level + ".txt";
+            String downloads = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents") + @"\" + folderName + "\\" + levelName + ".txt";
             System.IO.StreamReader file = new System.IO.StreamReader(downloads);
 
             StringBuilder builder = new StringBuilder();
@@ -51,7 +51,7 @@ namespace DesignPatterns1_LogischCircuit.Utility
                 if (!_setOutputs)
                 {
                     String[] node = GetNode(c);
-                    nodes.Add(node[0], node[1]);
+                    nodes.Add(node[0], new string[] { node[1] });
                     
                 }
                 else
@@ -99,6 +99,22 @@ namespace DesignPatterns1_LogischCircuit.Utility
             String nodeName = TrimText(outputText, ':');
             String[] outputNames = FindTypes(outputText);
             return new String[][] { new String[] { nodeName }, outputNames };
+        }
+
+        public static string[] GetFileNames()
+        {
+            string path = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents") + @"\" + folderName;
+
+            List<string> fileNames = new List<string>();
+            foreach (string fileName in Directory.GetFiles(path) )
+            {
+                string pat = @"([\w\d^\]+[\d]+_[\w\d]+).txt";
+                Regex r = new Regex(pat, RegexOptions.IgnoreCase);
+                Match m = r.Match(fileName);
+                fileNames.Add(m.Groups[1].Value);
+            }
+
+            return fileNames.ToArray(); ;
         }
 
         public static int CountFiles()

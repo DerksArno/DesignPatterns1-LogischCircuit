@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using DesignPatterns1_LogischCircuit.Builder;
 using DesignPatterns1_LogischCircuit.Models;
 using System.Collections.ObjectModel;
+using DesignPatterns1_LogischCircuit.Utility;
 
 namespace DesignPatterns1_LogischCircuit.ViewModels
 {
@@ -43,7 +44,8 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
 
         private void SelectCircuit()
         {
-            _circuit = CircuitBuilder.CreateCircuit(1);
+            string[] files = FileReader.GetFileNames();
+            _circuit = CircuitBuilder.CreateCircuit(files[0]);
         }
 
         private void StartSimulation()
