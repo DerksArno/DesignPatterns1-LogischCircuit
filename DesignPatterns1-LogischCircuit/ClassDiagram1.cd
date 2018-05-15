@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.AndNode">
+    <Position X="0.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Nodes\AndNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.NandNode">
+    <Position X="11.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Nodes\NandNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.Node">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <AssociationLine Name="_previousNodes" Type="DesignPatterns1_LogischCircuit.Models.Nodes.Node" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11" Y="5.312" />
+        <Point X="11.5" Y="5.312" />
+        <Point X="11.5" Y="5.812" />
+        <Point X="11" Y="5.812" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AEEAKCEACACAIAIAAAAAAAAEABAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Nodes\Node.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_nextNodes" />
+      <Field Name="_previousNodes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.NorNode">
+    <Position X="2.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Nodes\NorNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.NotNode">
+    <Position X="14" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Nodes\NotNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.OrNode">
+    <Position X="18.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Nodes\OrNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.ProbeNode">
+    <Position X="9.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Nodes\ProbeNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.XorNode">
+    <Position X="16.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Nodes\XorNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Factory.NodeFactory">
+    <Position X="5.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAEAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factory\NodeFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Builder.CircuitBuilder">
+    <Position X="3.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Builder\CircuitBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.Sources.HighSource">
+    <Position X="5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Nodes\Sources\HighSource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.Sources.LowSource">
+    <Position X="7.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Nodes\Sources\LowSource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.Sources.Source">
+    <Position X="6.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Nodes\Sources\Source.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Models.Circuit">
+    <Position X="4.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAABAAAAEAAAAEAAEAAAAAAAAAAAAAAAIBAgAQAAA=</HashCode>
+      <FileName>Models\Circuit.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_nodes" />
+      <Field Name="_sourceNodes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Observable.Observable&lt;T&gt;">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="DesignPatterns1_LogischCircuit.Observable.Observable&lt;T&gt;.Unsubscriber" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Observable\Observable.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAACAABAAAAAAAQAAAA=</HashCode>
+      <FileName>Observable\Observable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Utility.FileReader">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAEAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utility\FileReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.ViewModels.MainViewModel">
+    <Position X="1" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAkAAAAAAAAAAAABAAAAAQAAAAAAEA=</HashCode>
+      <FileName>ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_circuit" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

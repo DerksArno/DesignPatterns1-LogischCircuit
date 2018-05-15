@@ -25,6 +25,11 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
         public ObservableCollection<string> Circuits { get; set; }
         public string SelectedCircuit;
 
+        // TODO Feedback verwerken
+        // Filereader moet 2 lists returnen die de circuitbuilder kan gebruiken
+        // De circuitbuilder echt zelf het circuit maken en niet het circuit zelf
+        // source nodes kunnen weg, kan er 1 worden, wel opletten met value zetten
+
         public MainViewModel()
         {
             Circuits = new ObservableCollection<string>() { "test" };
