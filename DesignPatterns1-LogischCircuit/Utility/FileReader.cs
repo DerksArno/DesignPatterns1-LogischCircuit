@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DesignPatterns1_LogischCircuit.Utility
 {
     static class FileReader
     {
-        private static String folderName = "circuits";
+        private static readonly String folderName = "circuits";
+        private static Boolean _setOutputs = false;
+        private static Dictionary<string, string[]> nodes = new Dictionary<string, string>();
+        private static Dictionary<string, string[]> outputs = new Dictionary<string, string[]>();
 
-        public static String[] ReadFile(int level)
+
+        public static Dictionary<string, string>[] ReadFile(int level)
         {
             String downloads = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents") + @"\" + folderName + "\\Circuit" + level + ".txt";
             System.IO.StreamReader file = new System.IO.StreamReader(downloads);
@@ -29,9 +34,73 @@ namespace DesignPatterns1_LogischCircuit.Utility
 
             file.Close();
 
-            return fileLines.ToArray();
+            String[] fileArray = fileLines.ToArray();
+
+            foreach (string c in fileArray)
+            {
+                if (c.Length > 0 && c.First() == '#')
+                {
+                    continue;
+                }
+                if (c.Length == 0)
+                {
+                    _setOutputs = true;
+                    continue;
+                }
+
+                if (!_setOutputs)
+                {
+                    String[] node = GetNode(c);
+                    nodes.Add(node[0], node[1]);
+                    
+                }
+                else
+                {
+                    String[][] output = GetOutput(c);
+                    outputs.Add(output[0][0], output[1]);
+                }
+            }
+
+            return new Dictionary<string, string[]>[] { nodes, outputs };
         }
-        
+
+        private static String[] GetNode(String nodeText)
+        {
+            String nodeName = TrimText(nodeText, ':');
+            String nodeType = FindType(nodeText);
+            return new String[] { nodeName, nodeType };
+        }
+
+        private static String TrimText(String text, Char TrimAtChar)
+        {
+            int index = text.IndexOf(TrimAtChar);
+            if (index > 0)
+            {
+                return text.Substring(0, index);
+            }
+            return "";
+        }
+
+        private static String FindType(String text)
+        {
+            string pattern = @"[\w\d]+:[\s]+([\w,]+);";
+            MatchCollection matches = Regex.Matches(text, pattern);
+            return matches[0].Groups[1].Value;
+        }
+
+        private static String[] FindTypes(String text)
+        {
+            String[] types = FindType(text).Split(',');
+            return types;
+        }
+
+        private static String[][] GetOutput(String outputText)
+        {
+            String nodeName = TrimText(outputText, ':');
+            String[] outputNames = FindTypes(outputText);
+            return new String[][] { new String[] { nodeName }, outputNames };
+        }
+
         public static int CountFiles()
         {
             return Directory.GetFiles(Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents") + @"\"+ folderName).Length;

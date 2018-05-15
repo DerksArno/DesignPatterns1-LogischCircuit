@@ -29,8 +29,8 @@
       <FileName>Models\Nodes\Node.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
-      <Field Name="_nextNodes" />
       <Field Name="_previousNodes" />
+      <Field Name="_nextNodes" />
     </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" />
   </Class>
@@ -70,7 +70,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="DesignPatterns1_LogischCircuit.Factory.NodeFactory">
-    <Position X="5.75" Y="2.75" Width="1.5" />
+    <Position X="5.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAEAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Factory\NodeFactory.cs</FileName>
@@ -107,7 +107,7 @@
   <Class Name="DesignPatterns1_LogischCircuit.Models.Circuit">
     <Position X="4.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAABAAAAEAAAAEAAEAAAAAAAAAAAAAAAIBAgAQAAA=</HashCode>
+      <HashCode>AAAAABAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAgAQAAA=</HashCode>
       <FileName>Models\Circuit.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -132,9 +132,9 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="DesignPatterns1_LogischCircuit.Utility.FileReader">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+    <Position X="7.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAEAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ABAEIAAAAAEAQAAAAAAAAAAAEAAAAAAAAAIBAAQAIAA=</HashCode>
       <FileName>Utility\FileReader.cs</FileName>
     </TypeIdentifier>
   </Class>
