@@ -52,7 +52,7 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
+
         public static void Cleanup()
         {
 

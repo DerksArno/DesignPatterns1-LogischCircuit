@@ -18,8 +18,9 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
         // TODO Feedback verwerken
         // Filereader moet 2 lists returnen die de circuitbuilder kan gebruiken -                       Done, kan miss nog iets beter?
         // De circuitbuilder echt zelf het circuit maken en niet het circuit zelf                       Done
-        // source nodes kunnen weg, kan er 1 worden, wel opletten met value zetten                      
-        // FileReader is geen Utility...
+        // source nodes kunnen weg, kan er 1 worden, wel opletten met value zetten (idk of dat nodig is)
+        // FileReader is geen Utility... (maar wat dan wel :O)
+        // TODO show the circuit on the view
 
         public Circuit _circuit;
         public ObservableCollection<string> CircuitNames { get; set; }
@@ -59,22 +60,23 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
             }
         }
 
-        public MainViewModel()
-        {
-            SourceNodes = new ObservableCollection<Source>();
-            CircuitNames = new ObservableCollection<string>(FileReader.GetFileNames());
-            SelectedCircuit = CircuitNames[0];
-        }
-
         private bool _allSelected;
         public bool AllSelected
         {
+            // TODO Werkt niet =(
             get { return _allSelected; }
             set
             {
                 _allSelected = value;
                 SourceNodes.ToList().ForEach(x => x.Output = value);
             }
+        }
+
+        public MainViewModel()
+        {
+            SourceNodes = new ObservableCollection<Source>();
+            CircuitNames = new ObservableCollection<string>(FileReader.GetFileNames());
+            SelectedCircuit = CircuitNames[0];
         }
 
         private void SelectCircuit()
