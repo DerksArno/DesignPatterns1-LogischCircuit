@@ -10,15 +10,19 @@ namespace DesignPatterns1_LogischCircuit.Utility
 {
     static class FileReader
     {
-        private static readonly String folderName = "circuits";
-        private static Boolean _setOutputs = false;
-        private static Dictionary<string, string[]> nodes = new Dictionary<string, string[]>();
-        private static Dictionary<string, string[]> outputs = new Dictionary<string, string[]>();
-
+        private static readonly String _folderName = "circuits";
+        private static readonly String _folderPath = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents") + @"\" + _folderName;
+        private static Boolean _setOutputs;
+        private static Dictionary<string, string[]> _nodes;
+        private static Dictionary<string, string[]> _outputs;
 
         public static Dictionary<string, string[]>[] ReadFile(string levelName)
         {
-            String downloads = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents") + @"\" + folderName + "\\" + levelName + ".txt";
+            _setOutputs = false;
+            _nodes = new Dictionary<string, string[]>();
+            _outputs = new Dictionary<string, string[]>();
+
+            String downloads = _folderPath + "\\" + levelName + ".txt";
             System.IO.StreamReader file = new System.IO.StreamReader(downloads);
 
             StringBuilder builder = new StringBuilder();
@@ -51,17 +55,17 @@ namespace DesignPatterns1_LogischCircuit.Utility
                 if (!_setOutputs)
                 {
                     String[] node = GetNode(c);
-                    nodes.Add(node[0], new string[] { node[1] });
+                    _nodes.Add(node[0], new string[] { node[1] });
                     
                 }
                 else
                 {
                     String[][] output = GetOutput(c);
-                    outputs.Add(output[0][0], output[1]);
+                    _outputs.Add(output[0][0], output[1]);
                 }
             }
 
-            return new Dictionary<string, string[]>[] { nodes, outputs };
+            return new Dictionary<string, string[]>[] { _nodes, _outputs };
         }
 
         private static String[] GetNode(String nodeText)
@@ -103,7 +107,7 @@ namespace DesignPatterns1_LogischCircuit.Utility
 
         public static string[] GetFileNames()
         {
-            string path = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents") + @"\" + folderName;
+            string path = _folderPath;
 
             List<string> fileNames = new List<string>();
             foreach (string fileName in Directory.GetFiles(path) )
@@ -119,7 +123,8 @@ namespace DesignPatterns1_LogischCircuit.Utility
 
         public static int CountFiles()
         {
-            return Directory.GetFiles(Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents") + @"\"+ folderName).Length;
+            return Directory.GetFiles(_folderPath).Length;
         }
+
     }
 }

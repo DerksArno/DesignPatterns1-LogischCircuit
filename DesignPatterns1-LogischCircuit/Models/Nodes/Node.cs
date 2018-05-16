@@ -1,12 +1,7 @@
-﻿using DesignPatterns1_LogischCircuit.Observable;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using DesignPatterns1_LogischCircuit.Observable;
 
 namespace DesignPatterns1_LogischCircuit.Models.Nodes
 {

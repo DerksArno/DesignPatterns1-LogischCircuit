@@ -1,12 +1,8 @@
-﻿using DesignPatterns1_LogischCircuit.Factory;
+﻿using System.Collections.Generic;
+using DesignPatterns1_LogischCircuit.Factory;
 using DesignPatterns1_LogischCircuit.Models;
 using DesignPatterns1_LogischCircuit.Models.Nodes;
 using DesignPatterns1_LogischCircuit.Models.Nodes.Sources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesignPatterns1_LogischCircuit.Builder
 {
@@ -88,5 +84,4 @@ namespace DesignPatterns1_LogischCircuit.Builder
         }
 
     }
-    
 }

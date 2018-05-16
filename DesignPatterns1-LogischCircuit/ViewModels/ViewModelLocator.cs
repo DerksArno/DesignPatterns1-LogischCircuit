@@ -55,7 +55,7 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
         
         public static void Cleanup()
         {
-            // TODO Clear the ViewModels
+
         }
     }
 }

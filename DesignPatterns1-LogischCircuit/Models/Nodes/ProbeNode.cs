@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesignPatterns1_LogischCircuit.Models.Nodes
 {
@@ -10,7 +7,6 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
     {
         public override void CalculateOutput()
         {
-            // TODO aanpassen
             bool output = true;
             foreach (KeyValuePair<Node, bool> entry in _inputs)
             {

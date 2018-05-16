@@ -13,7 +13,7 @@
             <ComboBox x:Name="comboBox" ItemsSource="{Binding Circuits, Mode=TwoWay}"
                       SelectedItem="{Binding SelectedCircuit}" SelectedIndex="0"/>
             <Label x:Name="simulationLabel" Content="Simulation" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
-            <Button x:Name="button" Content="Start Simulation"/>
+            <Button x:Name="button" Content="Start Simulation" Command="{Binding StartCommand}"/>
             <Label x:Name="settingsLabel" Content="Settings" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
             <StackPanel Height="132">
                 <CheckBox x:Name="checkBox" Content="A"/>
