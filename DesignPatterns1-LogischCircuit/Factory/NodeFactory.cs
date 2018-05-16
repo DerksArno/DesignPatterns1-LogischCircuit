@@ -43,7 +43,7 @@ namespace DesignPatterns1_LogischCircuit.Factory
         {
             Type t = _types[type];
             Node node = (Node)Activator.CreateInstance(t);
-            node._name = name;
+            node.Name = name;
             return node;
         }
     }

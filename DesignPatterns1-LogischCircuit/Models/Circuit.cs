@@ -15,6 +15,11 @@ namespace DesignPatterns1_LogischCircuit.Models
             _nodes = nodes;
             _sourceNodes = sources;
         }
+
+        public List<Source> GetSourceNodes()
+        {
+            return _sourceNodes;
+        }
         
         public void StartSimulation()
         {
@@ -22,7 +27,6 @@ namespace DesignPatterns1_LogischCircuit.Models
             {
                 sourceNode.Start();
             }
-            Console.WriteLine('a');
         }
         
     }

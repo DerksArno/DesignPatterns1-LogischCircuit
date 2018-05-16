@@ -26,7 +26,7 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
             {
                 output = true;
             }
-            _output = output;
+            Output = output;
         }
 
         public override string GetTypeName()

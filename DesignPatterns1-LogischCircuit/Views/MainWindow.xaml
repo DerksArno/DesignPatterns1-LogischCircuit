@@ -4,22 +4,50 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesignPatterns1_LogischCircuit"
+        xmlns:views="clr-namespace:DesignPatterns1_LogischCircuit.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
         DataContext="{Binding Path=Main, Source={StaticResource Locator}}">
     <Grid HorizontalAlignment="Left" Height="320" Margin="0,0,0,0" VerticalAlignment="Top" Width="515">
+        
+        <!-- Circuit settings -->
         <StackPanel HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="139">
+            <!-- Circuit select -->
             <Label x:Name="selectCircuitLabel" Content="Select Circuit"/>
-            <ComboBox x:Name="comboBox" ItemsSource="{Binding Circuits, Mode=TwoWay}"
+            <ComboBox x:Name="comboBox" ItemsSource="{Binding CircuitNames, Mode=TwoWay}"
                       SelectedItem="{Binding SelectedCircuit}" SelectedIndex="0"/>
+            <!-- Circuit start simulation -->
             <Label x:Name="simulationLabel" Content="Simulation" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
             <Button x:Name="button" Content="Start Simulation" Command="{Binding StartCommand}"/>
+            <!-- Circuit node settings -->
             <Label x:Name="settingsLabel" Content="Settings" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
-            <StackPanel Height="132">
-                <CheckBox x:Name="checkBox" Content="A"/>
-            </StackPanel>
+            <ContentControl MaxHeight="110">
+                <DataGrid ItemsSource="{Binding Path=SourceNodes}" AutoGenerateColumns="False" Name="MyDataGrid" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Binding="{Binding Output}" Width="auto" >
+                            <DataGridCheckBoxColumn.HeaderTemplate>
+                                <DataTemplate x:Name="dtAllChkBx">
+                                    <CheckBox Name="cbxAll" Content="All" IsChecked="{Binding Path=DataContext.AllSelected,RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                                </DataTemplate>
+                            </DataGridCheckBoxColumn.HeaderTemplate>
+                        </DataGridCheckBoxColumn>
+                        <DataGridTemplateColumn Header="Name" Width="auto" IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ContentControl>
         </StackPanel>
-        <Grid HorizontalAlignment="Left" Height="300" Margin="154,10,0,0" VerticalAlignment="Top" Width="351"/>
+        
+        <!-- Circuit view -->
+        <Grid HorizontalAlignment="Left" Height="300" Margin="154,10,0,0" VerticalAlignment="Top" Width="351">
+            
+        </Grid>
+        
     </Grid>
 
 </Window>

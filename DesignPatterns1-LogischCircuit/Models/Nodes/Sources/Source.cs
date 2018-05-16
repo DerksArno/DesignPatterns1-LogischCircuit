@@ -3,17 +3,20 @@
 namespace DesignPatterns1_LogischCircuit.Models.Nodes.Sources
 {
     public abstract class Source : Node
-    {
-        private bool _defaultOutput;
-        
+    {   
         public void Start()
         {
             CalculateOutput();
         }
 
+        public override void CalculateOutput()
+        {
+            Output = _output;
+        }
+
         public void SwitchOutput()
         {
-            _defaultOutput = !_defaultOutput;
+            Output = !Output;
         }
     }
 }

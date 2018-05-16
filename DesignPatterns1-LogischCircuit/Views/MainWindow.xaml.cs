@@ -35,5 +35,14 @@ namespace DesignPatterns1_LogischCircuit.Views
             }
             */
         }
+
+        /*public AddInputs()
+        {
+            System.Windows.Controls.Check checkbox = new CheckBox();
+
+            newBtn.Content = i.ToString();
+            newBtn.Name = "Button" + i.ToString();
+            this.checkBoxHolder.Children.Add()
+        }*/
     }
 }

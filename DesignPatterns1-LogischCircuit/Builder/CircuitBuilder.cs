@@ -56,7 +56,7 @@ namespace DesignPatterns1_LogischCircuit.Builder
 
         private static Node SetOutput(KeyValuePair<string, string[]> entry, List<Node> nodes)
         {
-            Node node = nodes.Find(k => k._name == entry.Key);
+            Node node = nodes.Find(k => k.Name == entry.Key);
 
             if (node == null)
             {
@@ -65,7 +65,7 @@ namespace DesignPatterns1_LogischCircuit.Builder
 
             foreach (string entryValue in entry.Value)
             {
-                node._nextNodes.Add(nodes.Find(k => k._name == entryValue));
+                node._nextNodes.Add(nodes.Find(k => k.Name == entryValue));
             }
             
             return node;

@@ -4,13 +4,11 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes.Sources
 {
     class HighSource : Source
     {
-        private bool _defaultOutput = true;
-
-        public override void CalculateOutput()
+        public HighSource()
         {
-            _output = _defaultOutput;
+            _output = true;
         }
-
+        
         public override string GetTypeName()
         {
             return "INPUT_HIGH";

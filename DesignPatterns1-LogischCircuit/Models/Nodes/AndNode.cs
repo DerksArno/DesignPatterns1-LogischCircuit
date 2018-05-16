@@ -16,7 +16,7 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
                     break;
                 }
             }
-            _output = output;
+            Output = output;
         }
 
         public override string GetTypeName()

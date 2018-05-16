@@ -7,24 +7,28 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
 {
     public abstract class Node : Observable<Node>, IObserver<Node>
     {
-        public String _name;
-        protected bool _outputValue = false;
         protected Dictionary<Node, bool> _inputs = new Dictionary<Node, bool>();
         public ObservableCollection<Node> _previousNodes = new ObservableCollection<Node>();
         public List<Node> _nextNodes = new List<Node>();
 
-        public bool _output {
-            get { return _outputValue; }
+        protected String _name;
+        public String Name {
+            get { return _name; }
+            set { _name = value; }
+        }
+        protected bool _output = false;
+        public bool Output {
+            get { return _output; }
             set
             {
-                _outputValue = value;
+                _output = value;
                 Notify(this);
             }
         }
 
         public void PreviousNodeValue(Node node)
         {
-            AddToInput(node, node._output);
+            AddToInput(node, node.Output);
             if (_inputs.Count == _previousNodes.Count)
             {
                 CalculateOutput();
@@ -44,13 +48,12 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
                 _inputs.Add(node, value);
             }
         }
-
-        // Used for registering node objects
+                
         public abstract string GetTypeName();
-        
-        public void OnNext(Node value)
+
+        public void OnNext(Node node)
         {
-            PreviousNodeValue(value);
+            PreviousNodeValue(node);
         }
 
         public void OnError(Exception error)

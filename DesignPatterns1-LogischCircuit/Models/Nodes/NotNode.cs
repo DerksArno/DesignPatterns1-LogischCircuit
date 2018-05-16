@@ -7,7 +7,7 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
     {
         public override void CalculateOutput()
         {
-            _output = !_inputs.First().Value;
+            Output = !_inputs.First().Value;
         }
 
         public override string GetTypeName()

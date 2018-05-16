@@ -5,26 +5,34 @@ using System.Collections.ObjectModel;
 using DesignPatterns1_LogischCircuit.Utility;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using System.Collections.Generic;
+using System;
+using DesignPatterns1_LogischCircuit.Models.Nodes.Sources;
+using System.Linq;
+using System.ComponentModel;
 
 namespace DesignPatterns1_LogischCircuit.ViewModels
 {
-    /// <summary>
-    /// This class contains properties that the main View can data bind to.
-    /// <para>
-    /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
-    /// </para>
-    /// <para>
-    /// You can also use Blend to data bind with the tool's support.
-    /// </para>
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        // TODO Feedback verwerken
+        // Filereader moet 2 lists returnen die de circuitbuilder kan gebruiken -                       Done, kan miss nog iets beter?
+        // De circuitbuilder echt zelf het circuit maken en niet het circuit zelf                       Done
+        // source nodes kunnen weg, kan er 1 worden, wel opletten met value zetten                      
+        // FileReader is geen Utility...
+
         public Circuit _circuit;
-        public ObservableCollection<string> Circuits { get; set; }
-        public string SelectedCircuit { get; set; }
+        public ObservableCollection<string> CircuitNames { get; set; }
+
+        private string _selectedCircuit;
+        public string SelectedCircuit {
+            get { return _selectedCircuit; }
+            set
+            {
+                _selectedCircuit = value;
+                SelectCircuit();
+            }
+        }
 
         private ICommand _startCommand;
         public ICommand StartCommand
@@ -40,21 +48,47 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
                 return _startCommand;
             }
         }
-        // TODO Feedback verwerken
-        // Filereader moet 2 lists returnen die de circuitbuilder kan gebruiken -                       Done, kan miss nog iets beter?
-        // De circuitbuilder echt zelf het circuit maken en niet het circuit zelf                       Done
-        // source nodes kunnen weg, kan er 1 worden, wel opletten met value zetten                      
-        // FileReader is geen Utility...
+        
+        private ObservableCollection<Source> _sourceNodes;
+        public ObservableCollection<Source> SourceNodes
+        {
+            get { return _sourceNodes; }
+            set
+            {
+                _sourceNodes = value;
+            }
+        }
 
         public MainViewModel()
         {
-            Circuits = new ObservableCollection<string>(FileReader.GetFileNames());
-            SelectedCircuit = Circuits[0];
+            SourceNodes = new ObservableCollection<Source>();
+            CircuitNames = new ObservableCollection<string>(FileReader.GetFileNames());
+            SelectedCircuit = CircuitNames[0];
+        }
+
+        private bool _allSelected;
+        public bool AllSelected
+        {
+            get { return _allSelected; }
+            set
+            {
+                _allSelected = value;
+                SourceNodes.ToList().ForEach(x => x.Output = value);
+            }
+        }
+
+        private void SelectCircuit()
+        {
+            _circuit = CircuitBuilder.CreateCircuit(SelectedCircuit);
+            SourceNodes.Clear();
+            foreach (Source source in _circuit.GetSourceNodes())
+            {
+                SourceNodes.Add(source);
+            }
         }
 
         private void StartSimulation()
         {
-            _circuit = CircuitBuilder.CreateCircuit(SelectedCircuit);
             _circuit.StartSimulation();
         }
 
