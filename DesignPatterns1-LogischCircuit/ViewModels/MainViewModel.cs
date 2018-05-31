@@ -10,6 +10,7 @@ using System;
 using DesignPatterns1_LogischCircuit.Models.Nodes.Sources;
 using System.Linq;
 using System.ComponentModel;
+using DesignPatterns1_LogischCircuit.Models.Nodes;
 
 namespace DesignPatterns1_LogischCircuit.ViewModels
 {
@@ -21,6 +22,11 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
         // source nodes kunnen weg, kan er 1 worden, wel opletten met value zetten (idk of dat nodig is)
         // FileReader is geen Utility... (maar wat dan wel :O)
         // TODO show the circuit on the view
+
+        // TODO Composite pattern
+        // Compononent = gewoon nodig voor het aanroepen van "proces"
+        // Leaf = Node
+        // Composite = Verzameling nodes / circuit
 
         public Circuit _circuit;
         public ObservableCollection<string> CircuitNames { get; set; }
@@ -60,10 +66,19 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
             }
         }
 
+        private ObservableCollection<Node> _nodes;
+        public ObservableCollection<Node> Nodes
+        {
+            get { return _nodes; }
+            set
+            {
+                _nodes = value;
+            }
+        }
+
         private bool _allSelected;
         public bool AllSelected
         {
-            // TODO Werkt niet =(
             get { return _allSelected; }
             set
             {
@@ -74,6 +89,7 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
 
         public MainViewModel()
         {
+            Nodes = new ObservableCollection<Node>();
             SourceNodes = new ObservableCollection<Source>();
             CircuitNames = new ObservableCollection<string>(FileReader.GetFileNames());
             SelectedCircuit = CircuitNames[0];
@@ -87,11 +103,22 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
             {
                 SourceNodes.Add(source);
             }
+            Nodes.Clear();
+            foreach (Node node in _circuit.GetNodes())
+            {
+                Nodes.Add(node);
+            }
         }
 
         private void StartSimulation()
         {
             _circuit.StartSimulation();
+            RaisePropertyChanged("Nodes");
+            RaisePropertyChanged("SourceNodes");
+            RaisePropertyChanged(() => Nodes);
+            RaisePropertyChanged(() => SourceNodes);
+            RaisePropertyChanged();
+            Console.WriteLine("test");
         }
 
     }

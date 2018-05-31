@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:DesignPatterns1_LogischCircuit"
         xmlns:views="clr-namespace:DesignPatterns1_LogischCircuit.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
+        Title="MainWindow" Height="550" Width="530"
         DataContext="{Binding Path=Main, Source={StaticResource Locator}}">
-    <Grid HorizontalAlignment="Left" Height="320" Margin="0,0,0,0" VerticalAlignment="Top" Width="515">
-        
+    <Grid HorizontalAlignment="Left" Height="517" Margin="0,0,0,0" VerticalAlignment="Top" Width="515">
+
         <!-- Circuit settings -->
-        <StackPanel HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="139">
+        <StackPanel HorizontalAlignment="Left" Height="501" Margin="10,10,0,-191" VerticalAlignment="Top" Width="139">
             <!-- Circuit select -->
             <Label x:Name="selectCircuitLabel" Content="Select Circuit"/>
             <ComboBox x:Name="comboBox" ItemsSource="{Binding CircuitNames, Mode=TwoWay}"
@@ -21,15 +21,15 @@
             <Button x:Name="button" Content="Start Simulation" Command="{Binding StartCommand}"/>
             <!-- Circuit node settings -->
             <Label x:Name="settingsLabel" Content="Settings" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
-            <ContentControl MaxHeight="110">
-                <DataGrid ItemsSource="{Binding Path=SourceNodes}" AutoGenerateColumns="False" Name="MyDataGrid" CanUserAddRows="False">
+            <ContentControl MaxHeight="300">
+                <DataGrid ItemsSource="{Binding Path=SourceNodes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="MyDataGrid" CanUserAddRows="False">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn Binding="{Binding Output}" Width="auto" >
-                            <DataGridCheckBoxColumn.HeaderTemplate>
+                            <!--<DataGridCheckBoxColumn.HeaderTemplate>
                                 <DataTemplate x:Name="dtAllChkBx">
                                     <CheckBox Name="cbxAll" Content="All" IsChecked="{Binding Path=DataContext.AllSelected,RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
                                 </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
+                            </DataGridCheckBoxColumn.HeaderTemplate>-->
                         </DataGridCheckBoxColumn>
                         <DataGridTemplateColumn Header="Name" Width="auto" IsReadOnly="True">
                             <DataGridTemplateColumn.CellTemplate>
@@ -42,12 +42,23 @@
                 </DataGrid>
             </ContentControl>
         </StackPanel>
-        
-        <!-- Circuit view -->
-        <Grid HorizontalAlignment="Left" Height="300" Margin="154,10,0,0" VerticalAlignment="Top" Width="351">
 
+        <!-- Circuit view -->
+        <Grid x:Name="circuitView" HorizontalAlignment="Left" MaxHeight="497" Margin="154,10,0,0" VerticalAlignment="Top" Width="351">
+            <DataGrid ItemsSource="{Binding Path=Nodes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="VisualView" CanUserAddRows="False" Margin="0,0,0,10">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Binding="{Binding Output}" Width="auto" />
+                    <DataGridTemplateColumn Header="Name" Width="auto" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
-        
+
     </Grid>
 
 </Window>

@@ -21,12 +21,18 @@ namespace DesignPatterns1_LogischCircuit.Models
             return _sourceNodes;
         }
         
+        public List<Node> GetNodes()
+        {
+            return _nodes;
+        }
+
         public void StartSimulation()
         {
             foreach (Source sourceNode in _sourceNodes)
             {
                 sourceNode.Start();
             }
+            Console.Write('a');
         }
         
     }
