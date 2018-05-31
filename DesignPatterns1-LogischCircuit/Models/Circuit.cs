@@ -32,7 +32,6 @@ namespace DesignPatterns1_LogischCircuit.Models
             {
                 sourceNode.Start();
             }
-            Console.Write('a');
         }
         
     }

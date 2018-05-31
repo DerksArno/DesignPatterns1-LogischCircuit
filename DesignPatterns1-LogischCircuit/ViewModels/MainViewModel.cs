@@ -76,17 +76,6 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
             }
         }
 
-        private bool _allSelected;
-        public bool AllSelected
-        {
-            get { return _allSelected; }
-            set
-            {
-                _allSelected = value;
-                SourceNodes.ToList().ForEach(x => x.Output = value);
-            }
-        }
-
         public MainViewModel()
         {
             Nodes = new ObservableCollection<Node>();
@@ -113,12 +102,6 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
         private void StartSimulation()
         {
             _circuit.StartSimulation();
-            RaisePropertyChanged("Nodes");
-            RaisePropertyChanged("SourceNodes");
-            RaisePropertyChanged(() => Nodes);
-            RaisePropertyChanged(() => SourceNodes);
-            RaisePropertyChanged();
-            Console.WriteLine("test");
         }
 
     }
