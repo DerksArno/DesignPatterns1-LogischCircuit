@@ -20,7 +20,7 @@
             <Label x:Name="simulationLabel" Content="Simulation" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
             <Button x:Name="button" Content="Start Simulation" Command="{Binding StartCommand}"/>
             <!-- Circuit node inputs -->
-            <Label x:Name="settingsLabel" Content="Settings" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
+            <Label x:Name="settingsLabel" Content="Inputs" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
             <ContentControl MaxHeight="300">
                 <DataGrid ItemsSource="{Binding Path=SourceNodes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="MyDataGrid" CanUserAddRows="False">
                     <DataGrid.Columns>
@@ -37,7 +37,7 @@
                 </DataGrid>
             </ContentControl>
             <!-- Circuit node outputs -->
-            <Label x:Name="outputlabel" Content="Output" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
+            <Label x:Name="outputlabel" Content="Outputs" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
             <ContentControl MaxHeight="300">
                 <DataGrid ItemsSource="{Binding Path=ProbeNodes, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="Output" CanUserAddRows="False">
                     <DataGrid.Columns>
@@ -67,10 +67,27 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Next Nodes" Width="auto" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Type" Width="auto" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TypeName}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Next Nodes" Width="*" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ListBox ItemsSource="{Binding NextNodes}">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="Padding" Value="0"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <Label Content="{Binding Name}" Padding="0,0,0,0" Margin="0,0,0,0"/>

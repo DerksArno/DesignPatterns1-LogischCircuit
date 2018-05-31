@@ -59,6 +59,14 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
             }
         }
 
+        public String TypeName
+        {
+            get
+            {
+                return GetTypeName();
+            }
+        }
+
         public abstract void CalculateOutput();
 
         private void AddToInput(Node node, Boolean value)

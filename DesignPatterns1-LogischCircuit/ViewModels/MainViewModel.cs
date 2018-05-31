@@ -65,6 +65,13 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
             }
         }
 
+        private ObservableCollection<Node> _probeNodes;
+        public ObservableCollection<Node> ProbeNodes
+        {
+            get { return _probeNodes; }
+            set { _probeNodes = value; }
+        }
+
         private ObservableCollection<Node> _nodes;
         public ObservableCollection<Node> Nodes
         {
@@ -79,6 +86,7 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
         {
             Nodes = new ObservableCollection<Node>();
             SourceNodes = new ObservableCollection<Source>();
+            ProbeNodes = new ObservableCollection<Node>(_nodes.Where(n => n.TypeName == "PROBE").ToList());
             CircuitNames = new ObservableCollection<string>(Utility.FileReader.GetFileNames());
             SelectedCircuit = CircuitNames[0];
         }
@@ -95,6 +103,11 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
             foreach (Node node in _circuit.GetNodes())
             {
                 Nodes.Add(node);
+            }
+            ProbeNodes.Clear();
+            foreach (Node node in _nodes.Where(n => n.TypeName == "PROBE").ToList())
+            {
+                ProbeNodes.Add(node);
             }
         }
 
