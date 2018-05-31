@@ -9,13 +9,27 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
     public abstract class Node : Observable<Node>, INotifyPropertyChanged, IObserver<Node>
     {
         protected Dictionary<Node, bool> _inputs = new Dictionary<Node, bool>();
-        public ObservableCollection<Node> _previousNodes = new ObservableCollection<Node>();
-        public List<Node> _nextNodes = new List<Node>();
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public ObservableCollection<Node> _previousNodes = new ObservableCollection<Node>();
+
+        public ObservableCollection<Node> PreviousNodes
+        {
+            get { return _previousNodes; }
+            set { _previousNodes = value; }
+        }
+
+        public List<Node> _nextNodes = new List<Node>();
+
+        public List<Node> NextNodes
+        {
+            get { return _nextNodes; }
+            set { _nextNodes = value; }
         }
 
         protected String _name;

@@ -19,17 +19,29 @@
             <!-- Circuit start simulation -->
             <Label x:Name="simulationLabel" Content="Simulation" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
             <Button x:Name="button" Content="Start Simulation" Command="{Binding StartCommand}"/>
-            <!-- Circuit node settings -->
+            <!-- Circuit node inputs -->
             <Label x:Name="settingsLabel" Content="Settings" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
             <ContentControl MaxHeight="300">
                 <DataGrid ItemsSource="{Binding Path=SourceNodes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="MyDataGrid" CanUserAddRows="False">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn Binding="{Binding Output}" Width="auto" >
-                            <!--<DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate x:Name="dtAllChkBx">
-                                    <CheckBox Name="cbxAll" Content="All" IsChecked="{Binding Path=DataContext.AllSelected,RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                        </DataGridCheckBoxColumn>
+                        <DataGridTemplateColumn Header="Name" Width="auto" IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
                                 </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>-->
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ContentControl>
+            <!-- Circuit node outputs -->
+            <Label x:Name="outputlabel" Content="Output" Margin="0,20,0,0" BorderThickness="0,1,0,0"/>
+            <ContentControl MaxHeight="300">
+                <DataGrid ItemsSource="{Binding Path=ProbeNodes, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="Output" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Binding="{Binding Output}" Width="auto" IsReadOnly="True">
                         </DataGridCheckBoxColumn>
                         <DataGridTemplateColumn Header="Name" Width="auto" IsReadOnly="True">
                             <DataGridTemplateColumn.CellTemplate>
@@ -45,13 +57,26 @@
 
         <!-- Circuit view -->
         <Grid x:Name="circuitView" HorizontalAlignment="Left" MaxHeight="497" Margin="154,10,0,0" VerticalAlignment="Top" Width="351">
-            <DataGrid ItemsSource="{Binding Path=Nodes, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="VisualView" CanUserAddRows="False" Margin="0,0,0,10">
+            <DataGrid ItemsSource="{Binding Path=Nodes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="VisualView" CanUserAddRows="False" Margin="0,0,0,10">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn Binding="{Binding Output}" Width="auto" />
+                    <DataGridCheckBoxColumn Binding="{Binding Output}" Width="auto" IsReadOnly="True" />
                     <DataGridTemplateColumn Header="Name" Width="auto" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Next Nodes" Width="auto" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox ItemsSource="{Binding NextNodes}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}" Padding="0,0,0,0" Margin="0,0,0,0"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

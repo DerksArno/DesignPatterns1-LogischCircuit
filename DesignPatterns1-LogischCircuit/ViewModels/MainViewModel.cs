@@ -2,7 +2,6 @@ using GalaSoft.MvvmLight;
 using DesignPatterns1_LogischCircuit.Builder;
 using DesignPatterns1_LogischCircuit.Models;
 using System.Collections.ObjectModel;
-using DesignPatterns1_LogischCircuit.Utility;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.Generic;
@@ -80,7 +79,7 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
         {
             Nodes = new ObservableCollection<Node>();
             SourceNodes = new ObservableCollection<Source>();
-            CircuitNames = new ObservableCollection<string>(FileReader.GetFileNames());
+            CircuitNames = new ObservableCollection<string>(Utility.FileReader.GetFileNames());
             SelectedCircuit = CircuitNames[0];
         }
 

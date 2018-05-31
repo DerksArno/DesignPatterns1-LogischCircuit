@@ -65,7 +65,7 @@ namespace DesignPatterns1_LogischCircuit.Builder
 
             foreach (string entryValue in entry.Value)
             {
-                node._nextNodes.Add(nodes.Find(k => k.Name == entryValue));
+                node.NextNodes.Add(nodes.Find(k => k.Name == entryValue));
             }
             
             return node;
@@ -75,10 +75,10 @@ namespace DesignPatterns1_LogischCircuit.Builder
         {
             foreach (Node node in nodes)
             {
-                if (node._nextNodes.Contains(selectedNode))
+                if (node.NextNodes.Contains(selectedNode))
                 {
                     node.Subscribe(selectedNode);
-                    selectedNode._previousNodes.Add(node);
+                    selectedNode.PreviousNodes.Add(node);
                 }
             }
         }
