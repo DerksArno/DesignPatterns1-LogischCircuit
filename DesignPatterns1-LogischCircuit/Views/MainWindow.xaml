@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DesignPatterns1_LogischCircuit"
         xmlns:views="clr-namespace:DesignPatterns1_LogischCircuit.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="530"
+        Title="MainWindow" Height="550" Width="838"
         DataContext="{Binding Path=Main, Source={StaticResource Locator}}">
     <Grid HorizontalAlignment="Left" Height="517" Margin="0,0,0,0" VerticalAlignment="Top" Width="515">
 
@@ -56,7 +56,7 @@
         </StackPanel>
 
         <!-- Circuit view -->
-        <Grid x:Name="circuitView" HorizontalAlignment="Left" MaxHeight="497" Margin="154,10,0,0" VerticalAlignment="Top" Width="351">
+        <Grid x:Name="circuitView" HorizontalAlignment="Left" MaxHeight="497" Margin="154,10,0,0" VerticalAlignment="Top" Width="361">
             <DataGrid ItemsSource="{Binding Path=Nodes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="VisualView" CanUserAddRows="False" Margin="0,0,0,10">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Binding="{Binding Output}" Width="auto" IsReadOnly="True" />
@@ -100,6 +100,19 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
+
+        <!-- Console view -->
+        <ScrollViewer Name="Console" Height="470" Margin="531,10,-305,0" Padding="10" VerticalAlignment="Top" HorizontalAlignment="Left" Width="289" Background="Black">
+            <StackPanel>
+                <ItemsControl ItemsSource="{Binding ConsoleOutput, Mode=OneWay}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=.}" Foreground="White" FontFamily="Consolas"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
 
     </Grid>
 

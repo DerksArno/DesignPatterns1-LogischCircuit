@@ -38,6 +38,7 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
             get { return _name; }
             set { _name = value; }
         }
+
         protected bool _output = false;
 
         public bool Output {

@@ -45,9 +45,8 @@ namespace DesignPatterns1_LogischCircuit.Builder
         private static Node CreateNode(string nodeType, string nodeName)
         {
             Node node = NodeFactory.CreateNode(nodeType, nodeName);
-
-            // TODO Implement better way to get the Source nodes?
-            if (nodeType == "INPUT_HIGH" || nodeType == "INPUT_LOW")
+            
+            if (node is Source)
             {
                 _sourceNodes.Add((Source)node);
             }

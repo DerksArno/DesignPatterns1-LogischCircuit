@@ -82,6 +82,14 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
             }
         }
 
+        private List<string> _consoleOutput = new List<string>();
+
+        public List<string> ConsoleOutput
+        {
+            get { return _consoleOutput; }
+            set { _consoleOutput = value; }
+        }
+
         public MainViewModel()
         {
             Nodes = new ObservableCollection<Node>();
@@ -89,6 +97,7 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
             ProbeNodes = new ObservableCollection<Node>(_nodes.Where(n => n.TypeName == "PROBE").ToList());
             CircuitNames = new ObservableCollection<string>(Utility.FileReader.GetFileNames());
             SelectedCircuit = CircuitNames[0];
+            ConsoleOutput.Add("Circuit ready for use");
         }
 
         private void SelectCircuit()
