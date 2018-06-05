@@ -54,11 +54,6 @@
   <ItemGroup>
     <Compile Include="CircuitTest\CircuitBuilderTest.cs" />
     <Compile Include="NodeTest\AndNodeTest.cs" />
-    <Compile Include="NodeTest\NandNodeTest.cs" />
-    <Compile Include="NodeTest\NorNodeTest.cs" />
-    <Compile Include="NodeTest\NotNodeTest.cs" />
-    <Compile Include="NodeTest\OrNodeTest.cs" />
-    <Compile Include="NodeTest\XorNodeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

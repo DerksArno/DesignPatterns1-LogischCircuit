@@ -1,109 +1,64 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DesignPatterns1_LogischCircuit;
+using DesignPatterns1_LogischCircuit.Models.Nodes;
+using DesignPatterns1_LogischCircuit.Models.Nodes.Sources;
 using DesignPatterns1_LogischCircuit.Models;
+using DesignPatterns1_LogischCircuit.Factory;
+using System.Collections.Generic;
 
 namespace UnitTestProject.NodeTest
 {
     [TestClass]
     public class AndNodeTest
     {
-        private Circuit circuit;
+        private Source high1;
+        private Source high2;
+        private Source low1;
+        private Source low2;
 
-        private InputNode high1;
-        private InputNode high2;
-        private InputNode low1;
-        private InputNode low2;
+        private Node output;
+        private Node andNode;
 
-        private OutputNode output;
-        private AndNode andNode;
         [TestInitialize]
         public void TestInitialize()
         {
-            circuit = new Circuit();
+            high1 = (Source)NodeFactory.CreateNode("INPUT_HIGH", "A");
+            high2 = (Source)NodeFactory.CreateNode("INPUT_HIGH", "B");
+            low1 = (Source)NodeFactory.CreateNode("INPUT_HIGH", "C");
+            low2 = (Source)NodeFactory.CreateNode("INPUT_HIGH", "D");
+            output = NodeFactory.CreateNode("PROBE", "OUT");
+            andNode = NodeFactory.CreateNode("AND", "AND");
 
-            high1 = new InputNode(ref circuit, 1);
-            high2 = new InputNode(ref circuit, 1);
+            high1.NextNodes = new List<Node>() { andNode };
+            high2.NextNodes = new List<Node>() { andNode };
+            low1.NextNodes = new List<Node>() { andNode };
+            low2.NextNodes = new List<Node>() { andNode };
 
-            low1 = new InputNode(ref circuit, 0);
-            low2 = new InputNode(ref circuit, 0);
+            andNode.NextNodes = new List<Node>() { output };
 
-            output = new OutputNode(ref circuit);
-            andNode = new AndNode(ref circuit);
+            andNode.Subscribe(high1);
+            andNode.Subscribe(high2);
+            andNode.Subscribe(low1);
+            andNode.Subscribe(low2);
+
+            output.Subscribe(andNode);
+
         }
 
         [TestMethod]
         public void AndNode_Execute_TwoLow()
         {
-            // Arrange
-            low1.observers.Add(andNode);
-            low2.observers.Add(andNode);
+            high1.Start();
+            high2.Start();
+            low1.Start();
+            low2.Start();
 
-            andNode.subjects.Add(low1);
-            andNode.subjects.Add(low2);
-
-            andNode.observers.Add(output);
-
-            output.subjects.Add(andNode);
-
-            circuit.AddToQueue(low1);
-            circuit.AddToQueue(low2);
-            // Act
-            circuit.RunCircuit();
-
-            int actual = output.output;
-            int expected = 0;
+            bool actual = output.Output;
+            bool expected = true;
             // Assert
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        public void AndNode_Execute_OneLow()
-        {
-            // Arrange
-            low1.observers.Add(andNode);
-            high1.observers.Add(andNode);
-
-            andNode.subjects.Add(low1);
-            andNode.subjects.Add(high1);
-
-            andNode.observers.Add(output);
-
-            output.subjects.Add(andNode);
-
-            circuit.AddToQueue(low1);
-            circuit.AddToQueue(high1);
-            // Act
-            circuit.RunCircuit();
-
-            int actual = output.output;
-            int expected = 0;
-            // Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void AndNode_Execute_TwoHigh()
-        {
-            // Arrange
-            high1.observers.Add(andNode);
-            high2.observers.Add(andNode);
-
-            andNode.subjects.Add(high1);
-            andNode.subjects.Add(high2);
-
-            andNode.observers.Add(output);
-
-            output.subjects.Add(andNode);
-
-            circuit.AddToQueue(high1);
-            circuit.AddToQueue(high2);
-            // Act
-            circuit.RunCircuit();
-
-            int actual = output.output;
-            int expected = 1;
-            // Assert
-            Assert.AreEqual(expected, actual);
-        }
     }
 }

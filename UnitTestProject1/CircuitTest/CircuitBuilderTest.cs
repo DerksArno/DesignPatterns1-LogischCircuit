@@ -9,6 +9,7 @@ namespace UnitTestProject1
     [TestClass]
     public class CircuitBuilderTest
     {
+        /*
         Circuit circuit;
         [TestInitialize]
         public void TestInitialize()
@@ -154,5 +155,6 @@ namespace UnitTestProject1
                 Assert.Fail("Expected no exception, but got: " + ex.Message);
             }
         }
+        */
     }
 }
