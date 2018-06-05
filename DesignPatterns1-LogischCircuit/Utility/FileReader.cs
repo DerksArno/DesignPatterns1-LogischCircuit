@@ -71,7 +71,7 @@ namespace DesignPatterns1_LogischCircuit.Utility
         private static String[] GetNode(String nodeText)
         {
             String nodeName = TrimText(nodeText, ':');
-            String nodeType = FindType(nodeText);
+            String nodeType = FindType(nodeText); 
             return new String[] { nodeName, nodeType };
         }
 
@@ -116,7 +116,7 @@ namespace DesignPatterns1_LogischCircuit.Utility
 
             foreach (string fileName in Directory.GetFiles(path) )
             {
-                string pat = @"([\w\d^\]+[\d]+_[\w\d]+).txt";
+                string pat = @"([\w\d^\]+[\d]+_[\w\d]+).txt"; 
                 Regex r = new Regex(pat, RegexOptions.IgnoreCase);
                 Match m = r.Match(fileName);
                 fileNames.Add(m.Groups[1].Value);
