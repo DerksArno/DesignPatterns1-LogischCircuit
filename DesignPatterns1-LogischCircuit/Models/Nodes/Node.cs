@@ -8,6 +8,8 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
 {
     public abstract class Node : Observable<Node>, IObserver<Node>, INotifyPropertyChanged
     {
+        public abstract void Accept(IVisitor visitor);
+
         protected Dictionary<Node, bool> _inputs = new Dictionary<Node, bool>();
 
         public ObservableCollection<Node> _previousNodes = new ObservableCollection<Node>();

@@ -33,6 +33,14 @@ namespace DesignPatterns1_LogischCircuit.Models
                 sourceNode.Start();
             }
         }
-        
+
+        public void Accept(IVisitor visitor)
+        {
+            foreach (Node node in this._nodes)
+            {
+                node.Accept(visitor);
+            }
+        }
+
     }
 }

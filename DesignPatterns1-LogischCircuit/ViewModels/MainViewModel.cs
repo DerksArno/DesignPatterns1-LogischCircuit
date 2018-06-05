@@ -132,8 +132,16 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
         {
             if (_circuit == null)
                 return;
-            _circuit.StartSimulation();
+
             ConsoleOutput.Add("Simulation started.");
+
+            PropagationVisitor visitor = new PropagationVisitor();
+            _circuit.Accept(visitor);
+            
+            _circuit.StartSimulation();
+            ConsoleOutput.Add("Simulation ended.");
+
+            ConsoleOutput.Add("The delay = " + visitor.Output);
         }
 
     }

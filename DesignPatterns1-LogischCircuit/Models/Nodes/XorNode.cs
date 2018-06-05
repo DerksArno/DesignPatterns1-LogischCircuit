@@ -5,6 +5,11 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
 {
     class XorNode : Node
     {
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
+
         public override void CalculateOutput()
         {
             int trueCounter = 0;

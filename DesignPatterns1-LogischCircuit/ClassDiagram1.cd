@@ -3,37 +3,37 @@
   <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.AndNode">
     <Position X="1.25" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <HashCode>AIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
       <FileName>Models\Nodes\AndNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.NandNode">
     <Position X="10.25" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <HashCode>AIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
       <FileName>Models\Nodes\NandNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.Node">
-    <Position X="9.5" Y="3.75" Width="1.5" />
+    <Position X="9.5" Y="3.5" Width="1.5" />
     <AssociationLine Name="_previousNodes" Type="DesignPatterns1_LogischCircuit.Models.Nodes.Node" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="11" Y="4.312" />
-        <Point X="11.25" Y="4.312" />
-        <Point X="11.25" Y="4.812" />
-        <Point X="11" Y="4.812" />
+        <Point X="11" Y="4.042" />
+        <Point X="11.25" Y="4.042" />
+        <Point X="11.25" Y="4.525" />
+        <Point X="11" Y="4.525" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="_nextNodes" Type="DesignPatterns1_LogischCircuit.Models.Nodes.Node" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="11" Y="5.125" />
-        <Point X="11.25" Y="5.125" />
-        <Point X="11.25" Y="5.5" />
-        <Point X="11" Y="5.5" />
+        <Point X="11" Y="4.827" />
+        <Point X="11.25" Y="4.827" />
+        <Point X="11.25" Y="5.189" />
+        <Point X="11" Y="5.189" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AEEAKCEACACAAIIAAAAMAAQEgBAAAJAAAAAAAAAQAAA=</HashCode>
+      <HashCode>AMEAKCEACACAAIIAAAAMAAQEgBAAAJAAAAAAAAAQAAA=</HashCode>
       <FileName>Models\Nodes\Node.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -45,35 +45,35 @@
   <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.NorNode">
     <Position X="3.25" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <HashCode>AIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
       <FileName>Models\Nodes\NorNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.NotNode">
     <Position X="12.25" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <HashCode>AIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
       <FileName>Models\Nodes\NotNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.OrNode">
     <Position X="16.25" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <HashCode>AIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
       <FileName>Models\Nodes\OrNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.ProbeNode">
     <Position X="8.25" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <HashCode>AIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
       <FileName>Models\Nodes\ProbeNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.XorNode">
     <Position X="14.25" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <HashCode>AIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
       <FileName>Models\Nodes\XorNode.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -94,14 +94,14 @@
   <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.Sources.HighSource">
     <Position X="5.25" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Nodes\Sources\HighSource.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.Sources.LowSource">
     <Position X="7" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Nodes\Sources\LowSource.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -115,16 +115,17 @@
   <Class Name="DesignPatterns1_LogischCircuit.Models.Circuit">
     <Position X="5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAABAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAgABAAA=</HashCode>
+      <HashCode>AIgAABAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAgABAAA=</HashCode>
       <FileName>Models\Circuit.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Field Name="_nodes" />
       <Field Name="_sourceNodes" />
     </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="DesignPatterns1_LogischCircuit.Observable.Observable&lt;T&gt;">
-    <Position X="12.5" Y="5.25" Width="1.5" />
+    <Position X="12.5" Y="3.5" Width="1.5" />
     <NestedTypes>
       <Struct Name="DesignPatterns1_LogischCircuit.Observable.Observable&lt;T&gt;.Unsubscriber" Collapsed="true">
         <TypeIdentifier>
@@ -155,6 +156,14 @@
     <ShowAsAssociation>
       <Field Name="_circuit" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="DesignPatterns1_LogischCircuit.Models.Nodes.PropagationVisitor">
+    <Position X="12.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAIAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Nodes\PropagationVisitor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

@@ -80,12 +80,14 @@
     <Compile Include="Models\ICircuit.cs" />
     <Compile Include="Models\Nodes\AndNode.cs" />
     <Compile Include="Models\Circuit.cs" />
+    <Compile Include="Models\Nodes\IVisitor.cs" />
     <Compile Include="Models\Nodes\NandNode.cs" />
     <Compile Include="Models\Nodes\Node.cs" />
     <Compile Include="Models\Nodes\NorNode.cs" />
     <Compile Include="Models\Nodes\NotNode.cs" />
     <Compile Include="Models\Nodes\OrNode.cs" />
     <Compile Include="Models\Nodes\ProbeNode.cs" />
+    <Compile Include="Models\Nodes\PropagationVisitor.cs" />
     <Compile Include="Models\Nodes\Sources\HighSource.cs" />
     <Compile Include="Models\Nodes\Sources\LowSource.cs" />
     <Compile Include="Models\Nodes\Sources\Source.cs" />
