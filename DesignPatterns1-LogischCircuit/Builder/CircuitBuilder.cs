@@ -99,28 +99,6 @@ namespace DesignPatterns1_LogischCircuit.Builder
                 {
                     return false;
                 }
-
-                if (!RecursiveLoop(node, node))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private static bool RecursiveLoop(Node node, Node nodeToCheck)
-        {
-            foreach (Node n in node.NextNodes)
-            {
-                if (n == nodeToCheck || n.Name == nodeToCheck.Name)
-                {
-                    return false;
-                }
-
-                foreach (Node nextNode in n.NextNodes)
-                {
-                    return RecursiveLoop(nextNode, nodeToCheck);
-                }
             }
             return true;
         }
