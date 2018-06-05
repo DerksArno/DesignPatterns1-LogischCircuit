@@ -7,7 +7,7 @@ using DesignPatterns1_LogischCircuit.Models;
 using DesignPatterns1_LogischCircuit.Factory;
 using System.Collections.Generic;
 
-namespace UnitTestProject.NodeTest
+namespace UnitTestProject.Test
 {
     [TestClass]
     public class AndNodeTest

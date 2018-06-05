@@ -99,14 +99,28 @@ namespace DesignPatterns1_LogischCircuit.Builder
                 {
                     return false;
                 }
-                // TODO check if circuit has infinite loop
-                /*foreach (Node n in node.NextNodes)
+
+                if (!RecursiveLoop(node, node))
                 {
-                    if (n.NextNodes.Contains(node))
-                    {
-                        return false;
-                    }
-                }*/
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private static bool RecursiveLoop(Node node, Node nodeToCheck)
+        {
+            foreach (Node n in node.NextNodes)
+            {
+                if (n == nodeToCheck || n.Name == nodeToCheck.Name)
+                {
+                    return false;
+                }
+
+                foreach (Node nextNode in n.NextNodes)
+                {
+                    return RecursiveLoop(nextNode, nodeToCheck);
+                }
             }
             return true;
         }
