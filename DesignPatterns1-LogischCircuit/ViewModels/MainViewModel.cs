@@ -15,13 +15,6 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        // TODO Feedback verwerken
-        // Filereader moet 2 lists returnen die de circuitbuilder kan gebruiken -                       Done, kan miss nog iets beter?
-        // De circuitbuilder echt zelf het circuit maken en niet het circuit zelf                       Done
-        // source nodes kunnen weg, kan er 1 worden, wel opletten met value zetten (idk of dat nodig is)
-        // FileReader is geen Utility... (maar wat dan wel :O)
-        // TODO show the circuit on the view
-
         // TODO Composite pattern
         // Compononent = gewoon nodig voor het aanroepen van "proces"
         // Leaf = Node
@@ -82,9 +75,9 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
             }
         }
 
-        private List<string> _consoleOutput = new List<string>();
+        private ObservableCollection<string> _consoleOutput = new ObservableCollection<string>();
 
-        public List<string> ConsoleOutput
+        public ObservableCollection<string> ConsoleOutput
         {
             get { return _consoleOutput; }
             set { _consoleOutput = value; }
@@ -97,12 +90,19 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
             ProbeNodes = new ObservableCollection<Node>(_nodes.Where(n => n.TypeName == "PROBE").ToList());
             CircuitNames = new ObservableCollection<string>(Utility.FileReader.GetFileNames());
             SelectedCircuit = CircuitNames[0];
-            ConsoleOutput.Add("Circuit ready for use");
+            ConsoleOutput.Add("Program is ready for use.");
         }
 
         private void SelectCircuit()
         {
             _circuit = CircuitBuilder.CreateCircuit(SelectedCircuit);
+
+            if (_circuit == null)
+            {
+                ConsoleOutput.Add("Circuit is not valid.");
+                return;
+            }
+
             SourceNodes.Clear();
             foreach (Source source in _circuit.GetSourceNodes())
             {
@@ -122,6 +122,8 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
 
         private void StartSimulation()
         {
+            if (_circuit == null)
+                return;
             _circuit.StartSimulation();
         }
 

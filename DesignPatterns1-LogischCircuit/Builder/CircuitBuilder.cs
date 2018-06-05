@@ -3,6 +3,7 @@ using DesignPatterns1_LogischCircuit.Factory;
 using DesignPatterns1_LogischCircuit.Models;
 using DesignPatterns1_LogischCircuit.Models.Nodes;
 using DesignPatterns1_LogischCircuit.Models.Nodes.Sources;
+using System;
 
 namespace DesignPatterns1_LogischCircuit.Builder
 {
@@ -39,7 +40,15 @@ namespace DesignPatterns1_LogischCircuit.Builder
                 SetInput(node, nodes);
             }
 
-            return new Circuit(nodes, _sourceNodes);
+            Circuit newCircuit = new Circuit(nodes, _sourceNodes);
+
+            // Check if the circuit is valid.
+            if (!IsValidCircuit(newCircuit))
+            {
+                return null;
+            }
+
+            return newCircuit;
         }
 
         private static Node CreateNode(string nodeType, string nodeName)
@@ -82,5 +91,24 @@ namespace DesignPatterns1_LogischCircuit.Builder
             }
         }
 
+        private static bool IsValidCircuit(Circuit circuit)
+        {
+            foreach (Node node in circuit.GetNodes())
+            {
+                if (node.NextNodes.Count == 0 && node.GetTypeName() != "PROBE" && node is Source == false)
+                {
+                    return false;
+                }
+
+                /*foreach (Node n in node.NextNodes)
+                {
+                    if (n.NextNodes.Contains(node))
+                    {
+                        return false;
+                    }
+                }*/
+            }
+            return true;
+        }
     }
 }
