@@ -6,15 +6,9 @@ using System.ComponentModel;
 
 namespace DesignPatterns1_LogischCircuit.Models.Nodes
 {
-    public abstract class Node : Observable<Node>, INotifyPropertyChanged, IObserver<Node>
+    public abstract class Node : Observable<Node>, IObserver<Node>, INotifyPropertyChanged
     {
         protected Dictionary<Node, bool> _inputs = new Dictionary<Node, bool>();
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public ObservableCollection<Node> _previousNodes = new ObservableCollection<Node>();
 
@@ -49,6 +43,13 @@ namespace DesignPatterns1_LogischCircuit.Models.Nodes
                 NotifyPropertyChanged("Output");
                 Notify(this);
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public void PreviousNodeValue(Node node)

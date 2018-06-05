@@ -125,10 +125,5 @@ namespace DesignPatterns1_LogischCircuit.Utility
             return fileNames.ToArray();
         }
 
-        public static int CountFiles()
-        {
-            return Directory.GetFiles(_folderPath).Length;
-        }
-
     }
 }
