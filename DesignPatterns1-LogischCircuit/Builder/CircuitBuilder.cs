@@ -99,7 +99,7 @@ namespace DesignPatterns1_LogischCircuit.Builder
                 {
                     return false;
                 }
-
+                // TODO check if circuit has infinite loop
                 /*foreach (Node n in node.NextNodes)
                 {
                     if (n.NextNodes.Contains(node))

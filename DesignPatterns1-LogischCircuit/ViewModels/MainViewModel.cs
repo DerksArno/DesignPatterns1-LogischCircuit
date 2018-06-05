@@ -89,6 +89,14 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
             SourceNodes = new ObservableCollection<Source>();
             ProbeNodes = new ObservableCollection<Node>(_nodes.Where(n => n.TypeName == "PROBE").ToList());
             CircuitNames = new ObservableCollection<string>(Utility.FileReader.GetFileNames());
+
+            if (CircuitNames.Count == 0)
+            {
+                ConsoleOutput.Add("No files found!");
+                ConsoleOutput.Add("Add files to your Documents/circuits folder.");
+                return;
+            }
+
             SelectedCircuit = CircuitNames[0];
             ConsoleOutput.Add("Program is ready for use.");
         }
@@ -125,6 +133,7 @@ namespace DesignPatterns1_LogischCircuit.ViewModels
             if (_circuit == null)
                 return;
             _circuit.StartSimulation();
+            ConsoleOutput.Add("Simulation started.");
         }
 
     }

@@ -110,6 +110,10 @@ namespace DesignPatterns1_LogischCircuit.Utility
             string path = _folderPath;
 
             List<string> fileNames = new List<string>();
+
+            if (!Directory.Exists(path))
+                return fileNames.ToArray();
+
             foreach (string fileName in Directory.GetFiles(path) )
             {
                 string pat = @"([\w\d^\]+[\d]+_[\w\d]+).txt";
@@ -118,7 +122,7 @@ namespace DesignPatterns1_LogischCircuit.Utility
                 fileNames.Add(m.Groups[1].Value);
             }
 
-            return fileNames.ToArray(); ;
+            return fileNames.ToArray();
         }
 
         public static int CountFiles()

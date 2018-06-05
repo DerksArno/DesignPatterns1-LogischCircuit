@@ -107,7 +107,7 @@
                 <ItemsControl ItemsSource="{Binding ConsoleOutput, Mode=OneWay}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Path=.}" Foreground="White" FontFamily="Consolas"/>
+                            <TextBlock Text="{Binding Path=.}" Foreground="White" FontFamily="Consolas" TextWrapping="WrapWithOverflow"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
