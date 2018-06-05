@@ -5,7 +5,7 @@ using DesignPatterns1_LogischCircuit.Models.Nodes.Sources;
 
 namespace DesignPatterns1_LogischCircuit.Models
 {
-    public class Circuit
+    public class Circuit : ICircuit
     {
         private List<Node> _nodes;
         private List<Source> _sourceNodes;
